@@ -1,5 +1,7 @@
 # omnon
 
+※このファームウェアは開発中の物になります。
+
 - Keyboard Maintainer: [mass](https://x.com/mass_0X00)
 
 このキーボードのビルド環境を設定した後のビルド例:
