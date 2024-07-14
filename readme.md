@@ -2,26 +2,16 @@
 
 ![omnon](imgur.com image replace me!)
 
-*A short description of the keyboard/project*
+_A short description of the keyboard/project_
 
-* Keyboard Maintainer: [mass](https://github.com/mass)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+- Keyboard Maintainer: [mass](https://x.com/mass_0X00)
 
-Make example for this keyboard (after setting up your build environment):
+このキーボードのビルド環境を設定した後のビルド例:
 
-    make omnon:default
+    qmk compile -kb omnon -km default
 
-Flashing example for this keyboard:
+ブートローダー
+ブートローダーに入る方法:
 
-    make omnon:default:flash
-
-See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
-
-## Bootloader
-
-Enter the bootloader in 3 ways:
-
-* **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
-* **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
-* **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+Bootmagicリセット: マトリックスの(0,0)のキー（通常は左上のキーまたはEscapeキー）を押しながらキーボードを接続する
+物理リセットボタン: PCBの背面にあるボタンを一瞬押す - 一部にはショートさせるパッドがあるかもしれません
