@@ -17,9 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-// #define BOOTMAGIC_KEY_SALT     KC_SPACE // BOOTMAGICキーの設定
-// #define BOOTMAGIC_KEY_BOOT     KC_A     // BOOTMAGICキーの設定
-
 /* SPI & PMW3360 settings. */
 #define SPI_DRIVER SPID0
 #define SPI_SCK_PIN GP2
@@ -27,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPI_MOSI_PIN GP3
 #define PMW33XX_CS_PINS { GP1, GP5 }
 #define PMW33XX_CLOCK_SPEED 2000000
-
 
 #define JOYSTICK_MODE 0  // 0: HIDデバイスモード, 1: Gamepadモード
 
