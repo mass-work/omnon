@@ -198,6 +198,7 @@ pmw33xx_report_t pmw33xx_read_burst(uint8_t sensor) {
     }
 
     spi_write(REG_Motion_Burst);
+    // wait_us(500000); // waits for tSRAD_MOTBR
     wait_us(35); // waits for tSRAD_MOTBR
 
     spi_receive((uint8_t*)&report, sizeof(report));
@@ -208,8 +209,12 @@ pmw33xx_report_t pmw33xx_read_burst(uint8_t sensor) {
     }
 
     spi_stop();
+    wait_ms(10);
 
-    pd_dprintf("PMW33XX (%d): motion: 0x%x dx: %i dy: %i\n", sensor, report.motion.w, report.delta_x, report.delta_y);
+    #ifdef CONSOLE_ENABLE
+        // pd_dprintf("PMW33XX (%d): motion: 0x%x dx: %i dy: %i\n", sensor, report.motion.w, report.delta_x, report.delta_y);
+        // uprintf("PMW33XX (%d): motion: 0x%x dx: %i dy: %i\n", sensor, report.motion.w, report.delta_x, report.delta_y);
+    #endif
 
     report.delta_x *= -1;
     report.delta_y *= -1;

@@ -2,7 +2,7 @@
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
-CONSOLE_ENABLE = no         # Console for debug
+CONSOLE_ENABLE = yes         # Console for debug
 COMMAND_ENABLE = no         # Commands for debug and configuration
 NKRO_ENABLE = yes           # Enable N-Key Rollover
 
@@ -15,4 +15,6 @@ SRC += drivers/analog_joystick.c
 SRC += analog.c
 JOYSTICK_ENABLE = yes
 
-
+# SWIPE機能検討用
+SWIPE_ENABLE = no
+SRC += drivers/azoteq_iqs5xx.c

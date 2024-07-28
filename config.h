@@ -40,4 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define JOYSTICK_AXIS_RESOLUTION 10
 #endif
 
-
+// SWIPE機能検討用
+#define AZOTEQ_IQS5XX_WIDTH_MM 100
+#define AZOTEQ_IQS5XX_HEIGHT_MM 100
+#ifdef SWIPE_ENABLE
+#endif

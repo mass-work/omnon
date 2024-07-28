@@ -50,18 +50,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-#ifdef CONSOLE_ENABLE
-    #include <print.h>
-    #include "wait.h"
+// #ifdef CONSOLE_ENABLE
+//     #include <print.h>
+//     #include "wait.h"
 
-    void keyboard_post_init_user(void) {
-    debug_enable=true;
-    debug_matrix=true;
-    debug_mouse=true;
-    }
+//     void keyboard_post_init_user(void) {
+//     debug_enable=true;
+//     debug_matrix=true;
+//     debug_mouse=true;
+//     }
 
-    void matrix_scan_user(void) {
-        uprintf(" %d\n %d\n", debugPMW3360x, debugPMW3360y);
-        wait_us(10);
-    }
-#endif
+//     void matrix_scan_user(void) {
+//         uprintf(" %d\n %d\n", debugPMW3360x, debugPMW3360y);
+//         wait_us(10);
+//     }
+// #endif
