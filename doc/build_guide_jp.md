@@ -116,26 +116,31 @@
     <img src="images/001_06_wire.jpg" width="320px">
   </p>
 
-
 **2. トラックボールケースの準備**
 　※ 接着剤はエポキシ 2 液混合タイプを推奨します。
 
     1.  接着剤を混合し、爪楊枝先端に着けトラックボールケースのくぼみ6箇所に塗ります。
     2.  支持球を入れて指の腹で軽く押さえ接着剤が固まるまで置いておきます。
 
-<img src="images/002_01_ballcase1.jpg">
-<img src="images/002_01_ballcase2.jpg" width="320px">
-<img src="images/002_01_ballcase3.jpg" width="320px">
-<img src="images/002_01_ballcase4.jpg">
-<img src="images/002_01_ballcase5.jpg">
+  <p align="left">
+    <img src="images/002_01_ballcase1.jpg">
+    <img src="images/002_01_ballcase2.jpg" width="320px">
+    <img src="images/002_01_ballcase3.jpg" width="320px">
+  </p>
+  <p align="left">
+    <img src="images/002_01_ballcase4.jpg">
+    <img src="images/002_01_ballcase5.jpg">
+  </p>
 
 **3. ジョイスティック基板とスイッチ基板の切断**
 
     1.  小さな穴に沿って、裏表にカッターで切れ目を入れます。
     2.  切れ目を入れた個所を机の角などに合わせ基板を折ります。
 
-<img src="images/002_02_PCBcut1.jpg" width="320px">
-<img src="images/002_02_PCBcut2.jpg" width="320px">
+<p align="left">
+  <img src="images/002_02_PCBcut1.jpg" width="320px">
+  <img src="images/002_02_PCBcut2.jpg" width="320px">
+</p>
 
 **4. ボタンを切り離します**
 
@@ -153,9 +158,10 @@
 
      1. タクタイルスイッチを基板にはめ裏側からはんだ付けします。
 
-  <img src="images/002_04_switch1.jpg" width="320px">
-  <img src="images/002_04_switch2.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/002_04_switch1.jpg" width="320px">
+    <img src="images/002_04_switch2.jpg" width="320px">
+  </p>
 **2. ジョイスティック基板**
 
      1. 可変抵抗を基板にのせ、マスキングテープで固定し裏側からはんだ付けします。
@@ -163,10 +169,12 @@
        ※基板から浮いてしまうとケースと干渉する可能性があります。
        　浮かないように注意してください。
 
-  <img src="images/002_05_joyreg1.jpg" width="320px">
-  <img src="images/002_05_joyreg2.jpg" width="320px">
-  <img src="images/002_05_joyreg3.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/002_05_joyreg1.jpg" width="320px">
+    <img src="images/002_05_joyreg2.jpg" width="320px">
+    <img src="images/002_05_joyreg3.jpg" width="320px">
+  </p>
+  
 **3. メイン基板**
 基板に rp2040-zero を取り付けます。
 ※写真を参考に向きを間違えないよう注意してください。
@@ -176,19 +184,24 @@
         ※ピンは基板に対し少しきつめになっています。
         入れにくい場合は、ハンマー等硬いもので軽くたたいてください。
 
-  <img src="images/002_06_rp2040_1.jpg" hight="320px" width="320px">
-  <img src="images/002_06_rp2040_2.jpg" hight="320px" width="320px">
+  <p align="left">
+    <img src="images/002_06_rp2040_1.jpg" hight="320px" width="320px">
+    <img src="images/002_06_rp2040_2.jpg" hight="320px" width="320px">
+  </p>
   
     3.  ピンを指していない箇所をはんだ付けします。
     4.  まずは一点目にをはんだを付けます。その後、浮かないように指で押さえながら再度はんだを溶かします。
     5.  次に対角に位置する箇所も同じようにはんだを付けます。
     6.  ピンを抜き全てはんだ付けします。
-
-  <img src="images/002_06_rp2040_3.jpg" hight="320px" width="320px">
-  <img src="images/002_06_rp2040_4.jpg" hight="320px" width="320px">
-  <img src="images/002_06_rp2040_6.jpg" hight="320px" width="320px">
-  <img src="images/002_06_rp2040_5.jpg" hight="320px" width="320px">
   
+  <p align="left">
+    <img src="images/002_06_rp2040_3.jpg" hight="320px" width="320px">
+    <img src="images/002_06_rp2040_4.jpg" hight="320px" width="320px">
+  </p>
+  <p align="left">
+    <img src="images/002_06_rp2040_6.jpg" hight="320px" width="320px">
+    <img src="images/002_06_rp2040_5.jpg" hight="320px" width="320px">
+  </p>
 **4. PMW3360 (オプション)**
 基板に PMW3360 を取り付けます。
 PMW3360は最初からつける場合は、このタイミングが作業しやすいですが、全て配線が終わった後でも追加出来ます。
@@ -199,10 +212,12 @@ PMW3360は最初からつける場合は、このタイミングが作業しや�
      3. センサについている保護フィルムをはずし、レンズを取り付けます。
         ※レンズにも向きがあります。分かりにくいですが、LEDの光が出る側にレンズの三角形の凸がきます。
 
-  <img src="images/002_07_pmw1.jpg" width="320px">
-  <img src="images/002_07_pmw2.jpg" width="320px">
-  <img src="images/002_07_pmw3.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/002_07_pmw1.jpg" width="320px">
+    <img src="images/002_07_pmw2.jpg" width="320px">
+    <img src="images/002_07_pmw3.jpg" width="320px">
+  </p>
+  
 **5. 配線**
 
     1. ジョイスティック基板とスイッチ基板を配線します。
@@ -214,11 +229,15 @@ PMW3360は最初からつける場合は、このタイミングが作業しや�
         　スルーホール端の1か所が□になっています。
         　□同士が接続される状態がただしいです。
 
-  <img src="images/002_08_joy_sw_1.jpg" width="320px">
-  <img src="images/002_08_joy_sw_2.jpg" width="320px">
-  <img src="images/002_08_joy_sw_3.jpg" width="320px">
-  <img src="images/002_08_joy_sw_4.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/002_08_joy_sw_1.jpg" width="320px">
+    <img src="images/002_08_joy_sw_2.jpg" width="320px">
+  </p>
+  <p align="left">
+    <img src="images/002_08_joy_sw_3.jpg" width="320px">
+    <img src="images/002_08_joy_sw_4.jpg" width="320px">
+  </p>
+  
 <br/>
 
     2. ジョイスティック基板とメイン基板を配線します。
@@ -228,12 +247,16 @@ PMW3360は最初からつける場合は、このタイミングが作業しや�
         　スルーホール端の1か所が□になっています。
         　□同士が接続される状態がただしいです。
 
-  <img src="images/002_09_joy_main_1.jpg" width="320px">
-  <img src="images/002_09_joy_main_2.jpg" width="320px">
-  <img src="images/002_09_joy_main_3.jpg" width="320px">
-  <img src="images/002_09_joy_main_4.jpg" width="320px">
-  <img src="images/002_09_joy_main_5.jpg" width="320px">    
-    
+  <p align="left">
+    <img src="images/002_09_joy_main_1.jpg" width="320px">
+    <img src="images/002_09_joy_main_2.jpg" width="320px">
+    <img src="images/002_09_joy_main_3.jpg" width="320px">
+  </p>
+  <p align="left">
+    <img src="images/002_09_joy_main_4.jpg" width="320px">
+    <img src="images/002_09_joy_main_5.jpg" width="320px">    
+  </p>
+  
 ### 本体の組み立て
 
 ---
@@ -246,10 +269,12 @@ PMW3360は最初からつける場合は、このタイミングが作業しや�
     1. メインケースにマウスプレート、スイッチカバーを入れます。
     2. スイッチ押えを上から載せねじで固定します。(向きに注意してください。)
 
-  <img src="images/003_01_sw1.jpg" width="320px">
-  <img src="images/003_01_sw2.jpg" width="320px">
-  <img src="images/003_01_sw3.jpg" width="320px">
-  
+  <p align="left">
+    <img src="images/003_01_sw1.jpg" width="320px">
+    <img src="images/003_01_sw2.jpg" width="320px">
+    <img src="images/003_01_sw3.jpg" width="320px">
+  </p>
+    
     3. スイッチ基板を載せねじで固定します。
     4. スイッチが押せるか確認してください。(カチカチとクリック感があります。)
 
@@ -257,19 +282,23 @@ PMW3360は最初からつける場合は、このタイミングが作業しや�
 　[こちら](#タクタイルスイッチ組み付け後にクリック感がない場合)をご確認ください。
 　それでも解決しない場合はお手数ですが、販売ページよりご連絡ください。
 
-  <img src="images/003_01_sw4.jpg" width="320px">
-  <img src="images/003_01_sw5.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/003_01_sw4.jpg" width="320px">
+    <img src="images/003_01_sw5.jpg" width="320px">
+  </p>
+  
 **2. ジョイスティック基板の取付**
 
     1. ジョイスティックを可変抵抗に差し込みます。
        ※可変抵抗とジョイスティック切り欠きの向きは下図のようにしてください。
     2. ジョイスティック基板をメインケースに取り付けます。
 
-  <img src="images/003_02_joy1.jpg" width="320px">
-  <img src="images/003_02_joy2.jpg" width="320px">
-  <img src="images/003_02_joy3.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/003_02_joy1.jpg" width="320px">
+    <img src="images/003_02_joy2.jpg" width="320px">
+    <img src="images/003_02_joy3.jpg" width="320px">
+  </p>
+  
 **3. トラックボールケースの取付**
 　※支持球の接着剤が乾いてから作業をしてください。
 
@@ -278,24 +307,31 @@ PMW3360は最初からつける場合は、このタイミングが作業しや�
       ※ トラックボールがスムーズに動くことを確認してください。
      　　どこかが当たる場合は、ねじをゆるめケース位置を調整します。
 
-  <img src="images/003_03_tb1.jpg" width="320px">
-  <img src="images/003_03_tb2.jpg" width="320px">
+  <p align="left">
+    <img src="images/003_03_tb1.jpg" width="320px">
+    <img src="images/003_03_tb2.jpg" width="320px">
+  </p>
     
   **4. メイン基板の取付**
   
     1. メイン基板をトラックボールケースに取り付けます。
        ※USBの位置が中心に来るよう、基板の位置を調整して締め付けてください。
-  <img src="images/003_03_tb3.jpg" width="320px">
-  <img src="images/003_03_tb4.jpg" width="320px">
   
+  <p align="left">
+    <img src="images/003_03_tb3.jpg" width="320px">
+    <img src="images/003_03_tb4.jpg" width="320px">
+  </p>
+    
   **5. ボトムケースの取付**
 
     1. 切り込みの位置に合わせ、ボトムケースを取り付けます。
     2. 必要な場合は付属のゴム足を貼り付けてください。
 
-  <img src="images/003_04_bottom1.jpg" width="320px">
-  <img src="images/003_04_bottom2.jpg" width="320px">
-
+  <p align="left">
+    <img src="images/003_04_bottom1.jpg" width="320px">
+    <img src="images/003_04_bottom2.jpg" width="320px">
+  </p>
+  
 ## 使い方
 
 ---
