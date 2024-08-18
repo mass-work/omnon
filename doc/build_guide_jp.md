@@ -162,6 +162,7 @@
     <img src="images/002_04_switch1.jpg" width="320px">
     <img src="images/002_04_switch2.jpg" width="320px">
   </p>
+  
 **2. ジョイスティック基板**
 
      1. 可変抵抗を基板にのせ、マスキングテープで固定し裏側からはんだ付けします。
@@ -202,6 +203,7 @@
     <img src="images/002_06_rp2040_6.jpg" hight="320px" width="320px">
     <img src="images/002_06_rp2040_5.jpg" hight="320px" width="320px">
   </p>
+  
 **4. PMW3360 (オプション)**
 基板に PMW3360 を取り付けます。
 PMW3360は最初からつける場合は、このタイミングが作業しやすいですが、全て配線が終わった後でも追加出来ます。
