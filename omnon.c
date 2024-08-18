@@ -20,79 +20,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "drivers/pmw33xx_common.c"
 #include "config.h"
 #include "timer.h"
+#include "keymaps/default/custom_action.c"
 
 #ifdef CONSOLE_ENABLE
     int8_t debugPMW3360x, debugPMW3360y, debugPMW3360xy = 0;
 #endif
 
 #define ANGLE_THRESHOLD 1
-#define TB_MOVE_ANGLE_THRESHOLD 25
+#define TB_MOVE_ANGLE_THRESHOLD 45
 #define XSCALE_FACTOR 4
 #define YSCALE_FACTOR 4
-#define X_SC_SCALE_FACTOR 10
-#define Y_SC_SCALE_FACTOR 10
+#define X_SC_SCALE_FACTOR 30
+#define Y_SC_SCALE_FACTOR 30
 #define MA_WINDOW_SIZE 10 //移動平均のサイズ
 #define MOVING_AVERAGE_SIZE 10 // 移動平均のサンプルサイズ
+#define INACTIVITY_TIMEOUT 100 // msec無操作でリセット
+#define TB_RETURN_TIME 20 // msec無操作でリセット
+#define TB_MOUSE_BOTTON_PUSH_TIME 200 // msec以上経過しないとボタンを押し直さない
 
-// スクロール
-static float accumulated_h = 0.0f;
-static float accumulated_v = 0.0f;
-
-// 移動平均のためのバッファとインデックス
-float delta_x_buffer[MOVING_AVERAGE_SIZE] = {0};
-float delta_y_buffer[MOVING_AVERAGE_SIZE] = {0};
-int buffer_index = 0;
-
-// 移動平均を更新する関数
-void update_moving_average(float new_delta_x, float new_delta_y) {
-    delta_x_buffer[buffer_index] = new_delta_x;
-    delta_y_buffer[buffer_index] = new_delta_y;
-    buffer_index = (buffer_index + 1) % MOVING_AVERAGE_SIZE;
-}
-
-// 移動平均を計算する関数
-void calculate_moving_average(float* avg_delta_x, float* avg_delta_y) {
-    float sum_x = 0, sum_y = 0;
-    for (int i = 0; i < MOVING_AVERAGE_SIZE; ++i) {
-        sum_x += delta_x_buffer[i];
-        sum_y += delta_y_buffer[i];
-    }
-    *avg_delta_x = sum_x / MOVING_AVERAGE_SIZE;
-    *avg_delta_y = sum_y / MOVING_AVERAGE_SIZE;
-}
-
-typedef struct {
-    int values[MA_WINDOW_SIZE];
-    int index;
-    int count;
-} MovingAverage;
-
-void initMovingAverage(MovingAverage* ma) {
-    memset(ma, 0, sizeof(MovingAverage));
-}
-
-void updateMovingAverage(MovingAverage* ma, int newValue) {
-    ma->values[ma->index] = newValue;
-    ma->index = (ma->index + 1) % MA_WINDOW_SIZE;
-    if (ma->count < MA_WINDOW_SIZE) {
-        ma->count++;
-    }
-}
-
-int calculateAverage(MovingAverage* ma) {
-    int sum = 0;
-    for (int i = 0; i < ma->count; i++) {
-        sum += ma->values[i];
-    }
-    return ma->count > 0 ? sum / ma->count : 0;
-}
-
-// #define MOTION_GESTURE_TIME 100 // スワイプジェスチャーを検出する時間（ミリ秒）
-
+bool button3_pressed = false;
+bool shift_pressed = false;
+// bool ctrl_pressed = false;
 bool left_motion_detected, right_motion_detected, dual_motion_detected = false;
 int8_t tb_left_orient, tb_right_orient = 0;
 uint16_t tb_last_left_motion_time,tb_last_right_motion_time = 0;
 uint16_t tb_current_time = 0;
+uint16_t dual_init_time = 0;
+uint16_t left_init_time = 0;
+uint16_t dual_motion_time = 0;
 uint16_t motion_gesture_time = 20;
 int16_t left_ball_move_angle = 0;
 int16_t right_ball_move_angle = 0;
@@ -100,6 +55,63 @@ int16_t right_ball_move_angle = 0;
 uint16_t time_difference2(uint16_t t1, uint16_t t2){
     return (t1 - t2);
 }
+
+// スクロール
+#if TRACKBALL_MODE == 0
+    static float accumulated_h = 0.0f;
+    static float accumulated_v = 0.0f;
+
+    // 移動平均のためのバッファとインデックス
+    float delta_x_buffer[MOVING_AVERAGE_SIZE] = {0};
+    float delta_y_buffer[MOVING_AVERAGE_SIZE] = {0};
+    int buffer_index = 0;
+
+    // 移動平均を更新する関数
+    void update_moving_average(float new_delta_x, float new_delta_y) {
+        delta_x_buffer[buffer_index] = new_delta_x;
+        delta_y_buffer[buffer_index] = new_delta_y;
+        buffer_index = (buffer_index + 1) % MOVING_AVERAGE_SIZE;
+    }
+
+    // 移動平均を計算する関数
+    void calculate_moving_average(float* avg_delta_x, float* avg_delta_y) {
+        float sum_x = 0, sum_y = 0;
+        for (int i = 0; i < MOVING_AVERAGE_SIZE; ++i) {
+            sum_x += delta_x_buffer[i];
+            sum_y += delta_y_buffer[i];
+        }
+        *avg_delta_x = sum_x / MOVING_AVERAGE_SIZE;
+        *avg_delta_y = sum_y / MOVING_AVERAGE_SIZE;
+    }
+
+    typedef struct {
+        int values[MA_WINDOW_SIZE];
+        int index;
+        int count;
+    } MovingAverage;
+
+    void initMovingAverage(MovingAverage* ma) {
+        memset(ma, 0, sizeof(MovingAverage));
+    }
+
+    void updateMovingAverage(MovingAverage* ma, int newValue) {
+        ma->values[ma->index] = newValue;
+        ma->index = (ma->index + 1) % MA_WINDOW_SIZE;
+        if (ma->count < MA_WINDOW_SIZE) {
+            ma->count++;
+        }
+    }
+
+    int calculateAverage(MovingAverage* ma) {
+        int sum = 0;
+        for (int i = 0; i < ma->count; i++) {
+            sum += ma->values[i];
+        }
+        return ma->count > 0 ? sum / ma->count : 0;
+    }
+#endif
+
+
 
 void process_modifier(uint8_t key, const char* type) {
     if (strcmp(type, "tap") == 0) {
@@ -243,10 +255,10 @@ void process_modifier(uint8_t key, const char* type) {
             current_time = timer_read();
             // process_joystick_axis_report(&lxData, data.lx, &mouse_report, &mouse_report.v, -1, 1);
             // process_joystick_axis_report(&lyData, data.ly, &mouse_report, &mouse_report.h, 1, -1);
-            process_joystick_axis_tap(&lxData, data.lx, KC_VOLD, KC_VOLU, KC_NO, "None", KC_NO, "None", KC_NO, "None");
-            process_joystick_axis_tap(&lyData, data.ly, KC_RIGHT, KC_LEFT, KC_LCTL, "hold", KC_LGUI, "hold", KC_NO, "None");
-            process_joystick_axis_tap(&rxData, data.rx, KC_DOWN, KC_UP, KC_ESC, "tap", KC_LGUI, "hold", KC_NO, "None");
-            process_joystick_axis_tap(&ryData, data.ry, KC_RIGHT, KC_LEFT, KC_ESC, "tap", KC_LGUI, "hold", KC_NO, "None");
+            process_joystick_axis_tap(&lxData, data.lx, KC_VOLD, KC_VOLU, KC_NO, "None", KC_NO, "None", KC_NO, "None"); //ボリューム
+            process_joystick_axis_tap(&lyData, data.ly, KC_RIGHT, KC_LEFT, KC_LCTL, "hold", KC_LGUI, "hold", KC_NO, "None"); //仮想デスクトップ
+            process_joystick_axis_tap(&rxData, data.rx, KC_DOWN, KC_UP, KC_ESC, "tap", KC_LGUI, "hold", KC_NO, "None"); //画面移動
+            process_joystick_axis_tap(&ryData, data.ry, KC_RIGHT, KC_LEFT, KC_ESC, "tap", KC_LGUI, "hold", KC_NO, "None"); //画面移動
             return mouse_report;
         }
     #endif
@@ -254,7 +266,7 @@ void process_modifier(uint8_t key, const char* type) {
     void pointing_device_init_kb(void) {
         pmw33xx_init(0);         // index 1 is the fast device.
         pmw33xx_init(1);         // index 1 is the second device.a
-        pmw33xx_set_cpi(0, 12000); // applies to first sensor
+        pmw33xx_set_cpi(0, 3000); // applies to first sensor
         pmw33xx_set_cpi(1, 3000); // applies to second sensor
         pointing_device_init_user();
     }
@@ -310,38 +322,60 @@ void process_modifier(uint8_t key, const char* type) {
         }
 
         #ifdef CONSOLE_ENABLE
-            if(left_motion_detected){
-                uprintf("L %d\n ", left_ball_move_angle);
-            }
+            // if(left_motion_detected){
+            //     uprintf("L %d\n ", left_ball_move_angle);
+            //     uprintf("dm %d\n ", dual_motion_detected);
+            //     uprintf("B3 %d\n ", button3_pressed);
+            // }
             if(right_motion_detected){
-                uprintf("R %d\n ", right_ball_move_angle);
+                // uprintf("R %d\n ", right_ball_move_angle);
+                // uprintf("dm %d\n ", dual_motion_detected);
+                uprintf("WM %d\n, B3 %d\n ", dual_motion_detected, button3_pressed);
             }
-            if(dual_motion_detected){
-                uprintf("W %d\n ", left_ball_move_angle - right_ball_move_angle);
-            }
+            // if(dual_motion_detected){
+            //     uprintf("W %d\n ", left_ball_move_angle - right_ball_move_angle);
+            //     uprintf("dm %d\n ", dual_motion_detected);
+            //     uprintf("B3 %d\n ", button3_pressed);
+            // }
         #endif
+
 
         // left
         if (left_motion_detected) {
-            tb_last_left_motion_time = timer_read();
-
-            if (tb_left_orient == 1 || tb_left_orient == 3) {
-                accumulated_h += (float)(report0.delta_x);
-                float accumulated_h2 = accumulated_h / 1000 * X_SC_SCALE_FACTOR;
-                if (fabs(accumulated_h2) >= 1.0f) {
-                    mouse_report.h = (accumulated_h2 > 0) ? 1 : -1;
-                    accumulated_h = 0; // Reset
+            #if TRACKBALL_MODE == 0
+                tb_last_left_motion_time = timer_read();
+                if (tb_left_orient == 1 || tb_left_orient == 3) {
+                    accumulated_h += (float)(report0.delta_x);
+                    float accumulated_h2 = accumulated_h / 1000 * X_SC_SCALE_FACTOR;
+                    if (fabs(accumulated_h2) >= 1.0f) {
+                        mouse_report.h = (accumulated_h2 > 0) ? 1 : -1;
+                        accumulated_h = 0; // Reset
+                    }
                 }
-            }
-
-            if (tb_left_orient == 2 || tb_left_orient == 4) {
-                accumulated_v += (float)(report0.delta_y);
-                float accumulated_v2 = accumulated_v / 800 * Y_SC_SCALE_FACTOR;
-                if (fabs(accumulated_v2) >= 1.0f) {
-                    mouse_report.v = (accumulated_v2 > 0) ? 1 : -1;
-                    accumulated_v = 0; // Reset
+                if (tb_left_orient == 2 || tb_left_orient == 4) {
+                    accumulated_v += (float)(report0.delta_y);
+                    float accumulated_v2 = accumulated_v / 800 * Y_SC_SCALE_FACTOR;
+                    if (fabs(accumulated_v2) >= 1.0f) {
+                        mouse_report.v = (accumulated_v2 > 0) ? 1 : -1;
+                        accumulated_v = 0; // Reset
+                    }
                 }
-            }
+            #elif TRACKBALL_MODE == 1
+                if(!shift_pressed){
+                    if (!dual_motion_detected) {
+                    // if(time_difference2(tb_current_time, left_init_time) > TB_RETURN_TIME){
+                        register_code(KC_LSFT);
+                        shift_pressed = true;
+                        wait_ms(1);
+                        register_code(KC_BTN3);
+                        button3_pressed = true;
+                    // }
+                    }
+                }
+                mouse_report.x = constrain_hid(mouse_report.x + report0.delta_x / XSCALE_FACTOR);
+                mouse_report.y = constrain_hid(mouse_report.y + -report0.delta_y / YSCALE_FACTOR);
+
+            #endif
         }
 
         // right
@@ -353,24 +387,84 @@ void process_modifier(uint8_t key, const char* type) {
 
         // Dual
         if (dual_motion_detected) {
-            if(tb_left_orient - tb_right_orient == 0){
-                if(mouse_report.h == 1){
-                    tap_code(KC_RIGHT);
-                } else if(mouse_report.v == 1){
-                    tap_code(KC_UP);
-                } else if(mouse_report.h == -1){
-                    tap_code(KC_LEFT);
-                } else if(mouse_report.v == -1){
-                    tap_code(KC_DOWN);
+            // 通常モード
+            #if TRACKBALL_MODE == 0
+                if(tb_left_orient - tb_right_orient == 0){
+                    if(mouse_report.h == 1){
+                        tap_code(KC_RIGHT);
+                    } else if(mouse_report.v == 1){
+                        tap_code(KC_UP);
+                    } else if(mouse_report.h == -1){
+                        tap_code(KC_LEFT);
+                    } else if(mouse_report.v == -1){
+                        tap_code(KC_DOWN);
+                    }
+                }
+                mouse_report.v = 0;
+                mouse_report.h = 0;
+                mouse_report.x = 0;
+                mouse_report.y = 0;
+
+            // CADモード
+            #elif TRACKBALL_MODE == 1
+                mouse_report.x = mouse_report.x / 2;
+                mouse_report.y = mouse_report.y / 2;
+                mouse_report.v = 0;
+                mouse_report.h = 0;
+                if ((tb_right_orient == 1 && tb_left_orient == 3) || (tb_right_orient == 3 && tb_left_orient == 1)) {
+                        unregister_code(KC_LSFT);
+                        shift_pressed = false;
+                        unregister_code(KC_BTN3);
+                        wait_ms(1);
+                        mouse_report.x = 0;
+                        mouse_report.y = 0;
+                        mouse_report.v = (report1.delta_x > 0) ? -1 : 1;
+                }else if(tb_right_orient != 0){
+                    if(tb_right_orient == tb_left_orient){
+                        if(!button3_pressed){
+                            if(time_difference2(tb_current_time, dual_init_time) > TB_RETURN_TIME){
+                                unregister_code(KC_LSFT);
+                                shift_pressed = false;
+                                wait_ms(1);
+                                custom_register_mouse(KC_MS_BTN3, true);
+                                button3_pressed = true;
+                                dual_motion_time = timer_read();
+                            }
+                        }
+                    }
+                }
+            #endif
+        }
+        return pointing_device_task_user(mouse_report);
+    }
+
+    void housekeeping_task_kb(void) {
+        if (!left_motion_detected) {
+            if (shift_pressed) {
+                if (time_difference2(tb_current_time, left_init_time) > INACTIVITY_TIMEOUT) {
+                    left_init_time = timer_read();
+                    unregister_code(KC_LSFT);
+                    shift_pressed = false;
                 }
             }
-            mouse_report.v = 0;
-            mouse_report.h = 0;
-            mouse_report.x = 0;
-            mouse_report.y = 0;
         }
 
-        return pointing_device_task_user(mouse_report);
+        if (!dual_motion_detected && !left_motion_detected) {
+            if (time_difference2(tb_current_time, dual_init_time) > INACTIVITY_TIMEOUT) {
+                if(time_difference2(tb_current_time, dual_motion_time) > TB_MOUSE_BOTTON_PUSH_TIME){
+                    dual_init_time = timer_read();
+                    // if (ctrl_pressed) {
+                    //     unregister_code(KC_LCTL);
+                    //     ctrl_pressed = false;
+                    // }
+                    if (button3_pressed) {
+                            custom_register_mouse(KC_MS_BTN3, false);
+                            button3_pressed = false;
+                    }
+                }
+            }
+        }
+        housekeeping_task_user();
     }
 
 

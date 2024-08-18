@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PMW33XX_CS_PINS { GP1, GP5 }
 #define PMW33XX_CLOCK_SPEED 2000000
 
+#define TRACKBALL_MODE 1  // 0: 通常モード, 1: CADモード
+
 #define JOYSTICK_MODE 0  // 0: HIDデバイスモード, 1: Gamepadモード
 
 #if JOYSTICK_MODE == 0
@@ -45,3 +47,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AZOTEQ_IQS5XX_HEIGHT_MM 100
 #ifdef SWIPE_ENABLE
 #endif
+
