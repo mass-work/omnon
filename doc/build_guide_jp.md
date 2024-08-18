@@ -110,9 +110,12 @@
     4. 整える際は、トラックボールケースの穴に配線を入れ、溝に沿わせていきケースの端で折り曲げてください。
       ※赤矢印の箇所で配線がケースのツラくらいになるのが正しい位置です。
 
-  <img src="images/001_04_wire.jpg" width="320px">
-  <img src="images/001_05_wire.jpg" width="320px">
-  <img src="images/001_06_wire.jpg" width="320px">
+  <p align="left">
+    <img src="images/001_04_wire.jpg" width="320px">
+    <img src="images/001_05_wire.jpg" width="320px">
+    <img src="images/001_06_wire.jpg" width="320px">
+  </p>
+
 
 **2. トラックボールケースの準備**
 　※ 接着剤はエポキシ 2 液混合タイプを推奨します。
