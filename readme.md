@@ -33,12 +33,17 @@ Omnon は「トラックボール」と「ジョイスティック」を組み�
 各種設定は[Vial](https://vial.rocks/)により行うことが出来ます。
 
 1. リンクにアクセス後 Start Vial を押下してください。
+
    <img src="doc/images/100_01_readme_vialtop.jpg" width="300px">
+
 2. omnon への接続を要求されるので接続してください。
+
    <img src="doc/images/100_01_readme_vialconn.jpg" width="300px">
-3. 画面上半分は、omnon の設定状態になります。
-   omnon の変更したい箇所のボタンをクリック後、下半分にある任意のキーを選択することでキーが変更されます。
+
+3. 画面上半分は、omnon の設定状態になります。  
+   omnon の変更したい箇所のボタンをクリック後、下半分にある任意のキーを選択することでキーが変更されます。  
    ジョイスティックへの設定を変更するには、USB を再接続(抜き差し)する事で設定が反映されます。
+
    <img src="doc/images/100_01_readme_vialomnon.jpg" width="500px">
 
 > [!CAUTION]
