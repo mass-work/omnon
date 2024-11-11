@@ -363,7 +363,7 @@ bool handle_motion_unregister(bool pressed, uint16_t mod_keycode) {
 
 
 // joystick
-uint8_t joy_orient_threshold = 10;
+uint8_t joy_orient_threshold = 15;
 uint8_t joy_wait_time;
 float joy_l_speed_fact = 1.0f;
 float joy_r_speed_fact = 1.0f;
