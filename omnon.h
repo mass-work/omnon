@@ -20,12 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 
 
-#define LAYOUT( \
-    L00, L01, L02, L03 \
-) \
-{ \
-    { L00, L01, L02, L03 } \
-}
 
 // ジョイスティックのデータを格納する構造体
 typedef struct {
@@ -35,12 +29,20 @@ typedef struct {
     bool initialScrollDone;  // 初期スクロールが完了したかどうかのフラグ
 } JoystickAxisData;
 
+typedef struct {
+    int8_t ud;
+    int8_t lr;
+} report_add;
+
+
 extern int16_t lxOrigin, lyOrigin, rxOrigin, ryOrigin;  // extern宣言を追加
+// #define NUM_VIRTUAL_KEYS 16
 
 #ifdef CONSOLE_ENABLE
     extern JoystickAxisData rxData;
     extern int8_t debugPMW3360x;
     extern int8_t debugPMW3360y;
 #endif
+
 
 

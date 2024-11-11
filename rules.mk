@@ -15,6 +15,10 @@ SRC += drivers/analog_joystick.c
 SRC += analog.c
 JOYSTICK_ENABLE = yes
 
-# SWIPE機能検討用
-SWIPE_ENABLE = no
-SRC += drivers/azoteq_iqs5xx.c
+CUSTOM_MATRIX = lite		# duplex matrix
+SRC += matrix.c
+
+
+# # SWIPE機能検討用
+# SWIPE_ENABLE = no
+# SRC += drivers/azoteq_iqs5xx.c

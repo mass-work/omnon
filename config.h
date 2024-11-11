@@ -17,6 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+
+/* key matrix size */
+#define MATRIX_ROWS 20 // 行数
+#define MATRIX_COLS 10 // 列数
+#define MATRIX_ROW_PINS { GP13, GP12, GP6, GP7, GP8, GP9, GP14, GP15, GP16, GP17 }
+#define MATRIX_COL_PINS { GP11, GP10, GP18, GP19, GP20, GP21, GP22, GP23, GP24, GP24}
+
 /* SPI & PMW3360 settings. */
 #define SPI_DRIVER SPID0
 #define SPI_SCK_PIN GP2
@@ -25,16 +32,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PMW33XX_CS_PINS { GP1, GP5 }
 #define PMW33XX_CLOCK_SPEED 2000000
 
-#define TRACKBALL_MODE 1  // 0: 通常モード, 1: CADモード
+// #define TRACKBALL_MODE 0  // 0: 通常モード, 1: CADモード
 
 #define JOYSTICK_MODE 0  // 0: HIDデバイスモード, 1: Gamepadモード
 
 #if JOYSTICK_MODE == 0
     // HIDデバイスモード
-    #define ANALOG_JOYSTICK_LY_AXIS_PIN GP28
-    #define ANALOG_JOYSTICK_LX_AXIS_PIN GP29
-    #define ANALOG_JOYSTICK_RY_AXIS_PIN GP26
-    #define ANALOG_JOYSTICK_RX_AXIS_PIN GP27
+    #define ANALOG_JOYSTICK_LY_AXIS_PIN GP29
+    #define ANALOG_JOYSTICK_LX_AXIS_PIN GP28
+    #define ANALOG_JOYSTICK_RY_AXIS_PIN GP27
+    #define ANALOG_JOYSTICK_RX_AXIS_PIN GP26
 #elif JOYSTICK_MODE == 1
     // Gamepadモード
     #define JOYSTICK_BUTTON_COUNT 16
