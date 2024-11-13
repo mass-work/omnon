@@ -49,6 +49,28 @@ static void select_col(uint8_t col)
     writePinLow(col_pins[col]);
 }
 
+// 仮想ピンを処理する関数
+static uint8_t virtualReadPin(uint8_t index, bool is_row) {
+    // 行ピンの場合
+    if (is_row) {
+        // 3番目以降のrow_pins要素は常に1を返す
+        if (index >= 2) {
+            return 1;
+        } else {
+            return readPin(row_pins[index]);
+        }
+    }
+    // 列ピンの場合
+    else {
+        // 3番目以降のcol_pins要素は常に1を返す
+        if (index >= 2) {
+            return 1;
+        } else {
+            return readPin(col_pins[index]);
+        }
+    }
+}
+
 static void unselect_col(uint8_t col)
 {
     setPinInputHigh(col_pins[col]);
@@ -88,7 +110,8 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
     for(uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
 
         // Select the col pin to read (active low)
-        uint8_t pin_state = readPin(col_pins[col_index]);
+        uint8_t pin_state = virtualReadPin(col_index, false);
+        // uint8_t pin_state = readPin(col_pins[col_index]);
 
         // Populate the matrix row with the state of the col pin
         current_matrix[current_row] |=  pin_state ? 0 : (MATRIX_ROW_SHIFTER << col_index);
@@ -116,7 +139,8 @@ static bool read_rows_on_col(matrix_row_t current_matrix[], uint8_t current_col)
         matrix_row_t last_row_value = current_matrix[tmp];
 
         // Check row pin state
-        if (readPin(row_pins[row_index]) == 0)
+        // if (readPin(row_pins[row_index]) == 0)
+        if ( virtualReadPin(row_index, true) == 0)
         {
             // Pin LO, set col bit
             current_matrix[tmp] |= (MATRIX_ROW_SHIFTER << current_col);

@@ -17,12 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define GP50 50U
+#define GP51 51U
 
 /* key matrix size */
 #define MATRIX_ROWS 20 // 行数
 #define MATRIX_COLS 10 // 列数
-#define MATRIX_ROW_PINS { GP13, GP12, GP6, GP7, GP8, GP9, GP14, GP15, GP16, GP17 }
-#define MATRIX_COL_PINS { GP11, GP10, GP18, GP19, GP20, GP21, GP22, GP23, GP24, GP24}
+#define MATRIX_ROW_PINS { GP13, GP12, GP50, GP50, GP50, GP50, GP50, GP50, GP50, GP50}
+#define MATRIX_COL_PINS { GP11, GP10, GP51, GP51, GP51, GP51, GP51, GP51, GP51, GP51}
 
 /* SPI & PMW3360 settings. */
 #define SPI_DRIVER SPID0
