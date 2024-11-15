@@ -118,9 +118,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
         KC_NO  , KC_NO  , KC_1   , KC_1   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_1   , KC_0   , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_0   , KC_NO  , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_0   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_1   , KC_NO  , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0
     ),
     [1] = LAYOUT(
@@ -130,9 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
         KC_NO  , KC_NO  , KC_1   , KC_1   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_1   , KC_0   , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_0   , KC_NO  , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_LCTL, KC_BTN3, KC_NO  , KC_LCTL, KC_BTN3, KC_NO  ,
+        KC_NO  , KC_NO  , KC_0   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_LCTL, KC_BTN3, KC_NO  , KC_LCTL, KC_BTN3, KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_0   , KC_NO  , KC_RGHT, KC_LEFT, KC_BTN3, KC_NO  , KC_NO  , KC_BTN3,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_0   , KC_5   , KC_RGHT, KC_LEFT, KC_BTN3, KC_NO  , KC_NO  , KC_BTN3,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_7   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0
     ),
     [2] = LAYOUT(
@@ -142,9 +142,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
         KC_NO  , KC_NO  , KC_1   , KC_1   , KC_RGHT, KC_LEFT, KC_I   , KC_NO  , KC_NO  , KC_J   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_K   , KC_NO  , KC_NO  , KC_L   , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_1   , KC_0   , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
-        KC_NO  , KC_NO  , KC_1   , KC_NO  , KC_RGHT, KC_LEFT, KC_M   , KC_NO  , KC_NO  , KC_N   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_O   , KC_NO  , KC_NO  , KC_P   , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_M   , KC_NO  , KC_NO  , KC_N   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_O   , KC_NO  , KC_NO  , KC_P   , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
-        KC_NO  , KC_NO  , KC_1   , KC_NO  , KC_RGHT, KC_LEFT, KC_Q   , KC_NO  , KC_NO  , KC_R   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_S   , KC_NO  , KC_NO  , KC_T   , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_Q   , KC_NO  , KC_NO  , KC_R   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_S   , KC_NO  , KC_NO  , KC_T   , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1
     )
 };

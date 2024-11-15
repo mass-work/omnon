@@ -214,7 +214,7 @@ void get_report_add(report_add *tb_add_report, float delta_x, float delta_y, int
         }
     }
     tb_scaled = sqrt(accumulated_h2 * accumulated_h2 + accumulated_v2 * accumulated_v2);
-    uprintf("tb_scaled: %d\n" , tb_scaled);
+    // uprintf("tb_scaled: %d\n" , tb_scaled);
 }
 
 void scroll_report(report_mouse_t *mouse_report, report_add *tb_add_report, float delta_x, float delta_y, int orientation) {
@@ -366,7 +366,9 @@ bool handle_motion_unregister(bool pressed, uint16_t mod_keycode) {
 uint8_t joy_orient_threshold = 15;
 uint8_t joy_wait_time;
 float joy_l_speed_fact = 1.0f;
+float joy_l_speed_fact2 = 1.0f;
 float joy_r_speed_fact = 1.0f;
+float joy_r_speed_fact2 = 1.0f;
 float get_joy_speed(uint16_t keycode) {
     switch (keycode) {
         case KC_0:
@@ -404,7 +406,7 @@ uint16_t joy_initial_time_count_L = 0; // 最初のスクロールタイミン�
 uint16_t joy_repeat_time_count_L = 0; // 経過後のスクロール頻度の基準
 uint16_t joy_initial_time_count_R = 0; // 最初のスクロールタイミング
 uint16_t joy_repeat_time_count_R = 0; // 経過後のスクロール頻度の基準
-uint16_t joy_initial_time_period = 500; // 最初のスクロールタイミング
+uint16_t joy_initial_time_period = 250; // 最初のスクロールタイミング
 uint16_t joy_repeat_time_period = 200;   // 経過後のスクロール頻度の基準
 bool joyInitialFlagL = false;
 bool joyInitialFlagR = false;
@@ -569,11 +571,18 @@ void process_joystick_press(bool *pressed, uint8_t row, uint8_t wait_time, uint8
             process_trackball_motion_move(right_motion_detected, virtual_keys[current_layer][2][0], &tb_add_report, &mouse_report, -report1.delta_x, -report1.delta_y, tb_right_orient, virtual_keys[current_layer][2][2], virtual_keys[current_layer][3][2], virtual_keys[current_layer][2][3], virtual_keys[current_layer][3][3]);
         }
 
+
+
+
         // joystick
         // report_analog_joystick_t data = analog_joystick_read();
 
+
+
         joy_l_speed_fact = get_joy_speed(virtual_keys[current_layer][7][0]);
+        joy_l_speed_fact2 = get_joy_speed(virtual_keys[current_layer][6][1]);
         joy_r_speed_fact = get_joy_speed(virtual_keys[current_layer][9][0]);
+        joy_r_speed_fact2 = get_joy_speed(virtual_keys[current_layer][8][1]);
 
         lxJoyData = (analogReadPin(ANALOG_JOYSTICK_LX_AXIS_PIN) - lxOrigin) / 4 * joy_l_speed_fact;
         lyJoyData = (analogReadPin(ANALOG_JOYSTICK_LY_AXIS_PIN) - lyOrigin) / 4 * joy_l_speed_fact;
@@ -625,7 +634,7 @@ void process_joystick_press(bool *pressed, uint8_t row, uint8_t wait_time, uint8
                         joyInitialFlagL = true;
 
                     }else {
-                        if (time_difference2(joy_current_time_L, joy_initial_time_count_L) > ((joy_initial_time_period + joy_repeat_time_period) / joy_l_speed_fact / joyPressFactL)) {
+                        if (time_difference2(joy_current_time_L, joy_initial_time_count_L) > ((joy_initial_time_period + joy_repeat_time_period) / joy_l_speed_fact2)) {
                             // 下にジョイスティックの倒し量により速度を変える変数をいれる
                             if (time_difference2(joy_current_time_L, joy_repeat_time_count_L) > (joy_repeat_time_period / joy_l_speed_fact / joyPressFactL)) {
                                 joy_repeat_time_count_L = timer_read();
@@ -687,7 +696,7 @@ void process_joystick_press(bool *pressed, uint8_t row, uint8_t wait_time, uint8
                         joyInitialFlagR = true;
 
                     }else {
-                        if (time_difference2(joy_current_time_R, joy_initial_time_count_R) > ((joy_initial_time_period + joy_repeat_time_period) / joy_r_speed_fact / joyPressFactR)) {
+                        if (time_difference2(joy_current_time_R, joy_initial_time_count_R) > ((joy_initial_time_period + joy_repeat_time_period) / joy_r_speed_fact2)) {
                             // 下にジョイスティックの倒し量により速度を変える変数をいれる
                             if (time_difference2(joy_current_time_R, joy_repeat_time_count_R) > (joy_repeat_time_period / joy_r_speed_fact / joyPressFactR)) {
                                 joy_repeat_time_count_R = timer_read();
@@ -706,7 +715,7 @@ void process_joystick_press(bool *pressed, uint8_t row, uint8_t wait_time, uint8
                 break;
         }
 
-        // uprintf("lx,ly,rx,ry: %d %d %d %d\n" , lxJoyData, lyJoyData, rxJoyData, ryJoyData);
+        uprintf("lx,ly,rx,ry: %d %d %d %d\n" , lxJoyData, lyJoyData, rxJoyData, ryJoyData);
         return pointing_device_task_user(mouse_report);
     }
 
