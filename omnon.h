@@ -36,6 +36,7 @@ typedef struct {
 
 
 extern int16_t lxOrigin, lyOrigin, rxOrigin, ryOrigin;  // extern宣言を追加
+extern bool layer_changed_flag;  // extern宣言を追加
 // #define NUM_VIRTUAL_KEYS 16
 
 #ifdef CONSOLE_ENABLE

@@ -21,4 +21,8 @@ SRC += matrix.c
 
 # # SWIPE機能検討用
 # SWIPE_ENABLE = no
+
+# AZOTEQ_IQS5XX_ENABLE = yes
 # SRC += drivers/azoteq_iqs5xx.c
+# SRC += i2c_master.c
+# SRC += platforms/avr/drivers/i2c_master.c

@@ -77,15 +77,18 @@ void layerChange(void) {
     if (!layerChangActive) {
         if (!readSw1) {
             if (!readSw2) {
+                layer_changed_flag = true;
                 // layerChangActive = true;
                 uprintf("readSw2; %d\n", readSw2);
                 layer_move(0);
 
             } else if (!readSw3) {
+                layer_changed_flag = true;
                 // layerChangActive = true;
                 uprintf("readSw3; %d\n", readSw3);
                 layer_move(1);
             } else if (!readSw4) {
+                layer_changed_flag = true;
                 // layerChangActive = true;
                 uprintf("readSw4; %d\n", readSw4);
                 layer_move(2);
@@ -112,40 +115,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *
      */
     [0] = LAYOUT(
-        KC_BTN1, KC_BTN2, KC_0   , KC_1   , KC_WH_R, KC_WH_L, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_ENT , KC_BTN3, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_WH_R, KC_WH_L, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_1   , KC_0   , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_BTN1, KC_BTN2, KC_0   , KC_5   , KC_WH_R, KC_WH_L, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_ENT , KC_BTN3, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_WH_R, KC_WH_L, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_1   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
         KC_NO  , KC_NO  , KC_0   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
         KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0
     ),
     [1] = LAYOUT(
-        KC_BTN1, KC_BTN2, KC_0   , KC_1   , KC_WH_R, KC_WH_L, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_ENT , KC_BTN3, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_0   , KC_1   , KC_WH_R, KC_WH_L, KC_LSFT, KC_BTN3, KC_NO  , KC_LSFT,        KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_LSFT, KC_BTN3, KC_NO  , KC_LSFT, KC_BTN3, KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
-        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_1   , KC_0   , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_BTN1, KC_BTN2, KC_0   , KC_5   , KC_WH_R, KC_WH_L, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_ENT , KC_BTN3, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_NO  , KC_NO  , KC_0   , KC_5   , KC_WH_R, KC_WH_L, KC_LSFT, KC_BTN3, KC_NO  , KC_LSFT,        KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_LSFT, KC_BTN3, KC_NO  , KC_LSFT, KC_BTN3, KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_WH_U, KC_WH_D, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_1   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
         KC_NO  , KC_NO  , KC_0   , KC_5   , KC_RGHT, KC_LEFT, KC_NO  , KC_NO  , KC_NO  , KC_NO  ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_LCTL, KC_BTN3, KC_NO  , KC_LCTL, KC_BTN3, KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
         KC_NO  , KC_NO  , KC_0   , KC_5   , KC_RGHT, KC_LEFT, KC_BTN3, KC_NO  , KC_NO  , KC_BTN3,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_NO  , KC_BTN3, KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_7   , KC_NO  , KC_UP  , KC_DOWN, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0
     ),
     [2] = LAYOUT(
-        KC_BTN1, KC_BTN2, KC_1   , KC_1   , KC_WH_R, KC_WH_L, KC_A   , KC_NO  , KC_NO  , KC_B   ,        KC_ENT , KC_BTN3, KC_NO  , KC_NO  , KC_C   , KC_NO  , KC_NO  , KC_D   , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
-        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_WH_R, KC_WH_L, KC_E   , KC_NO  , KC_NO  , KC_F   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_G   , KC_NO  , KC_NO  , KC_H  , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_0   , KC_WH_U, KC_WH_D, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
-        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_RGHT, KC_LEFT, KC_I   , KC_NO  , KC_NO  , KC_J   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_K   , KC_NO  , KC_NO  , KC_L   , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_1   , KC_0   , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
-        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_M   , KC_NO  , KC_NO  , KC_N   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_O   , KC_NO  , KC_NO  , KC_P   , KC_NO  , KC_NO  ,
+        KC_BTN1, KC_BTN2, KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_A   , KC_NO  , KC_NO  , KC_B   ,        KC_ENT , KC_BTN3, KC_NO  , KC_NO  , KC_C   , KC_NO  , KC_NO  , KC_D   , KC_NO  , KC_NO  ,
         KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
-        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_Q   , KC_NO  , KC_NO  , KC_R   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_S   , KC_NO  , KC_NO  , KC_T   , KC_NO  , KC_NO  ,
-        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_E   , KC_NO  , KC_NO  , KC_F   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_G   , KC_NO  , KC_NO  , KC_H   , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_I   , KC_NO  , KC_NO  , KC_J   ,        KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_K   , KC_NO  , KC_NO  , KC_L   , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_1   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_1   , KC_1   , KC_1   ,        KC_NO  , KC_NO  , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   , KC_1   ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_LCTL, KC_LGUI, KC_NO  , KC_LCTL,        KC_NO  , KC_NO  , KC_LGUI, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_VOLU, KC_VOLD, KC_0   , KC_0   , KC_0   , KC_0   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   , KC_0   ,
+        KC_NO  , KC_NO  , KC_1   , KC_5   , KC_RGHT, KC_LEFT, KC_ESC , KC_LGUI, KC_NO  , KC_ESC ,        KC_NO  , KC_NO  , KC_LGUI, KC_NO  , KC_ESC , KC_LGUI, KC_NO  , KC_ESC , KC_LGUI, KC_NO  ,
+        KC_NO  , KC_NO  , KC_5   , KC_NO  , KC_UP  , KC_DOWN, KC_1   , KC_0   , KC_0   , KC_1   ,        KC_NO  , KC_NO  , KC_0   , KC_0   , KC_1   , KC_0   , KC_0   , KC_1   , KC_0   , KC_0
     )
 };
 

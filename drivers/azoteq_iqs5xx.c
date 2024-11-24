@@ -98,12 +98,20 @@
 #define AZOTEQ_IQS5XX_INCH_TO_RESOLUTION_Y(inch) (DIVIDE_UNSIGNED_ROUND((inch) * (uint32_t)AZOTEQ_IQS5XX_HEIGHT_MM * 10, 254))
 #define AZOTEQ_IQS5XX_RESOLUTION_Y_TO_INCH(px) (DIVIDE_UNSIGNED_ROUND((px) * (uint32_t)254, AZOTEQ_IQS5XX_HEIGHT_MM * 10))
 
+#ifndef i2c_stop
+static inline void i2c_stop(void) {
+    // STOP conditionの送信
+    // i2c_transmit(0, NULL, 0, I2C_TIMEOUT_IMMEDIATE); // ダミーデータで通信を終了
+}
+#endif
+
 static uint16_t azoteq_iqs5xx_product_number = AZOTEQ_IQS5XX_UNKNOWN;
 
 static struct {
     uint16_t resolution_x;
     uint16_t resolution_y;
 } azoteq_iqs5xx_device_resolution_t;
+
 
 i2c_status_t azoteq_iqs5xx_wake(void) {
     uint8_t      data   = 0;
