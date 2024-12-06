@@ -198,7 +198,7 @@ void reset_moving_average(void) {
 void get_report_add(report_add *tb_add_report, float delta_x, float delta_y, int orientation, float speed_adjust, uint16_t cpi) {
     float x = delta_x;
     float y = delta_y;
-    uprintf("x: %d\n" , (int)x);
+    // uprintf("x: %d\n" , (int)x);
 
     int sign_x = (x > 0) - (x < 0);
     int sign_y = (y > 0) - (y < 0);
@@ -246,8 +246,11 @@ void cursor_report(report_mouse_t *mouse_report, float delta_x, float delta_y, f
     x = x / XSCALE_FACTOR;
     y = y / YSCALE_FACTOR;
 
-    mouse_report->x = constrain_hid(mouse_report->x + (int8_t)roundf(x));
-    mouse_report->y = constrain_hid(mouse_report->y + (int8_t)roundf(y));
+    x = constrain_hid((int16_t)roundf(x));
+    y = constrain_hid((int16_t)roundf(y));
+
+    mouse_report->x = constrain_hid(mouse_report->x + x);
+    mouse_report->y = constrain_hid(mouse_report->y + y);
 
     // mouse_report->x = constrain_hid(mouse_report->x + (-delta_x / XSCALE_FACTOR));
     // mouse_report->y = constrain_hid(mouse_report->y + (delta_y / YSCALE_FACTOR));
@@ -325,7 +328,7 @@ void process_trackball_motion(bool *pressed, uint8_t row, uint16_t wait_time, ui
                             get_modifier_type(virtual_keys[current_layer][row + 1][i]),
                             pressed[i]
                         );
-                        wait_us(1000);
+                        wait_us(700);
                     }
                 }
                 cursor_report(mouse_report, delta_x, -delta_y, tb_speed_adjust, cpi);
@@ -577,15 +580,22 @@ void process_joystick_press(bool *pressed, uint8_t row, uint8_t wait_time, uint8
         tb_current_time = timer_read();
 
         // モーションフラグ
-        if(motion_gesture_time < time_difference2(tb_current_time, tb_last_left_motion_time)){
-            left_motion_detected = report0.delta_x != 0 || report0.delta_y != 0;
-            tb_last_left_motion_time = timer_read();
+        if(LEFT_TB){
+            if(motion_gesture_time < time_difference2(tb_current_time, tb_last_left_motion_time)){
+                left_motion_detected = report0.delta_x != 0 || report0.delta_y != 0;
+                tb_last_left_motion_time = timer_read();
+                // uprintf("l: %d\n" , report0.delta_x);
+            }
         }
-        if(motion_gesture_time < time_difference2(tb_current_time, tb_last_right_motion_time)){
-            right_motion_detected = report1.delta_x != 0 || report1.delta_y != 0;
-            tb_last_right_motion_time = timer_read();
+
+        if(RIGHT_TB){
+            if(motion_gesture_time < time_difference2(tb_current_time, tb_last_right_motion_time)){
+                right_motion_detected = report1.delta_x != 0 || report1.delta_y != 0;
+                tb_last_right_motion_time = timer_read();
+                // uprintf("rrr: %d\n" , report1.delta_x);
+            }
         }
-        bool dual_motion_detected = left_motion_detected && right_motion_detected;
+        dual_motion_detected = left_motion_detected && right_motion_detected;
 
         // トラックボールの方向計算
         left_ball_move_angle = 0;
@@ -649,6 +659,12 @@ void process_joystick_press(bool *pressed, uint8_t row, uint8_t wait_time, uint8
         //     process_trackball_motion_press(tb_r_pressed, 2, tb_speed_fact, tb_right_orient, current_layer, &tb_add_report);
         //     process_trackball_motion_move(right_motion_detected, virtual_keys[current_layer][2][0], &tb_add_report, &mouse_report, -report1.delta_x, -report1.delta_y, tb_right_orient, virtual_keys[current_layer][2][2], virtual_keys[current_layer][3][2], virtual_keys[current_layer][2][3], virtual_keys[current_layer][3][3], tb_speed_fact);
         // }
+        uprintf("dual: %d\n" , dual_motion_detected);
+        uprintf("l: %d\n" , left_motion_detected);
+        uprintf("r: %d\n" , right_motion_detected);
+        uprintf("l: %d\n" , report0.delta_x);
+
+
 
         if (dual_motion_detected) {
             tb_speed_fact = get_speed_adjust(virtual_keys[current_layer][4][1]);

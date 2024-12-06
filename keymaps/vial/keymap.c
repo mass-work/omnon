@@ -79,18 +79,18 @@ void layerChange(void) {
             if (!readSw2) {
                 layer_changed_flag = true;
                 // layerChangActive = true;
-                uprintf("readSw2; %d\n", readSw2);
+                // uprintf("readSw2; %d\n", readSw2);
                 layer_move(0);
 
             } else if (!readSw3) {
                 layer_changed_flag = true;
                 // layerChangActive = true;
-                uprintf("readSw3; %d\n", readSw3);
+                // uprintf("readSw3; %d\n", readSw3);
                 layer_move(1);
             } else if (!readSw4) {
                 layer_changed_flag = true;
                 // layerChangActive = true;
-                uprintf("readSw4; %d\n", readSw4);
+                // uprintf("readSw4; %d\n", readSw4);
                 layer_move(2);
             }
         }

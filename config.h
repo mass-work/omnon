@@ -32,7 +32,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPI_MISO_PIN GP4
 #define SPI_MOSI_PIN GP3
 #define PMW33XX_CS_PINS { GP1, GP5 }
-#define PMW33XX_CLOCK_SPEED 2000000
+// #define PMW33XX_CLOCK_SPEED 2000000
+#define LEFT_TB TRUE
+#define RIGHT_TB FALSE
+
 
 // #define TRACKBALL_MODE 0  // 0: 通常モード, 1: CADモード
 

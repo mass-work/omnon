@@ -2,7 +2,7 @@
   "keyboard_name": "omnon",
   "manufacturer": "mass",
   "usb": {
-    "vid": "0x04D8",
+    "vid": "0xDA73",
     "pid": "0xA87F",
     "device_version": "0.0.1"
   },

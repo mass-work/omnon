@@ -17,6 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x32, 0x48, 0x15, 0x93, 0x83, 0x7A, 0x12, 0x0F}
+#define VIAL_KEYBOARD_UID {0x95, 0xD4, 0xEE, 0xD7, 0xC7, 0x68, 0x2F, 0xCF}
 #define VIAL_UNLOCK_COMBO_ROWS {0, 0}
 #define VIAL_UNLOCK_COMBO_COLS {0, 2}
